@@ -7,6 +7,8 @@
 SELAY is an advanced malware creation tool
 made by an Ethiopian developer.
 
+MADE FOR EDUCATIONAL PURPOSE ONLY!
+
 It can generate various types of malwares for both Windows and Linux.
 Types of Malwares and their denoted number
 
@@ -20,7 +22,7 @@ Types of Malwares and their denoted number
 "explorer.exe" and "svchost.exe"
 
 
-=======LINUX MALWARE GENERATOR COMING SOON!!!=========
+==========LINUX MALWARE GENERATOR COMING SOON!!!=========
 
 
 
